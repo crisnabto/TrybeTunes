@@ -31,7 +31,6 @@ class Album extends React.Component {
 
   render() {
     const { allSongs, getInfo } = this.state;
-    // const { artistName } = allSongs;
     return (
       <div data-testid="page-album">
         <Header />
@@ -40,7 +39,6 @@ class Album extends React.Component {
           <h3 data-testid="album-name">{getInfo.collectionName}</h3>
           <p data-testid="artist-name">{getInfo.artistName}</p>
           {allSongs.map((song, index) => (
-            // console.log(song)
             <MusicCard songs={ song } key={ index } />
           ))}
         </section>
