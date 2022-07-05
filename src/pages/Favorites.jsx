@@ -19,10 +19,8 @@ class Favorites extends React.Component {
     this.getAllFavorites();
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.favorite !== prevState.favorite) {
-  //     this.refreshComponent();
-  //   }
+  // componentDidUpdate() {
+  //   this.getAllFavorites()
   // }
 
   // refreshComponent = () => {

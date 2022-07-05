@@ -9,7 +9,7 @@ class Profile extends React.Component {
     super();
 
     this.state = {
-      carregando: false,
+      carregando: true,
       userObj: '',
     };
   }
@@ -19,10 +19,9 @@ class Profile extends React.Component {
   }
 
   getUserInfo = async () => {
-    this.setState({ carregando: true });
+    // this.setState({ carregando: true });
     const userInfo = await getUser();
     this.setState({ carregando: false, userObj: userInfo });
-    console.log(userInfo);
   }
 
   render() {
@@ -31,16 +30,16 @@ class Profile extends React.Component {
     return (
       <div data-testid="page-profile">
         <Header />
-        {carregando ? <Loading /> : (
-
-          <section>
-            <h3>{name}</h3>
-            <p>{email}</p>
+        { carregando ? <Loading /> : (
+          <>
+            <h1>{name}</h1>
+            <h3>{email}</h3>
             <p>{description}</p>
-            <img data-testid="profile-image" src={ image } alt="name" />
-
-            <Link to="/profile/edit">Editar perfil</Link>
-          </section>
+            <img data-testid="profile-image" src={ image } alt={ name } />
+            <Link to="/profile/edit">
+              <button type="button">Editar perfil</button>
+            </Link>
+          </>
 
         )}
       </div>
