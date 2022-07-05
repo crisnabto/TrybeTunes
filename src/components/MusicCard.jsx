@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { addSong, removeSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import Loading from '../pages/Loading';
 
 class MusicCard extends React.Component {
@@ -13,15 +13,29 @@ class MusicCard extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.getPreviousFavoriteSongs();
+  }
+
+  getPreviousFavoriteSongs = async () => {
+    const { songs } = this.props;
+    const savedSongs = await getFavoriteSongs();
+    // se a música selecionada estiver dentre as musicas favoritadas que estão salvas no localstorage, o checkbox será marcado.
+    const isFavorite = savedSongs.some((song) => song.trackName === songs.trackName);
+    // console.log(isFavorite)
+    if (isFavorite) {
+      this.setState({ favorite: true });
+    }
+  }
+
   favoriteSong = async () => {
     const { favorite } = this.state;
+    const { songs } = this.props;
     if (favorite === false) {
-      const { songs } = this.props;
       this.setState({ carregando: true });
       await addSong(songs);
       this.setState({ carregando: false, favorite: true });
     } else {
-      const { songs } = this.props;
       this.setState({ carregando: true });
       await removeSong(songs);
       this.setState({ carregando: false, favorite: false });
@@ -50,7 +64,7 @@ class MusicCard extends React.Component {
               type="checkbox"
               id={ trackId }
               data-testid={ `checkbox-music-${trackId}` }
-              onClick={ this.favoriteSong }
+              onChange={ this.favoriteSong }
               checked={ favorite }
             />
             Favorita

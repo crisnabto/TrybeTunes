@@ -22,11 +22,9 @@ class Album extends React.Component {
   getSongs = async () => {
     const { match: { params: { id } } } = this.props;
     const answer = await getMusics(id);
-    // console.log(answer)
     // remover o primeiro objeto pq ele não retorna uma música:
     const songs = answer.slice(1);
     this.setState({ allSongs: songs, getInfo: answer[0] });
-    // console.log(songs)
   }
 
   render() {
