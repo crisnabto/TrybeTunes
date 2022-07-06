@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends React.Component {
   constructor() {
@@ -27,6 +28,10 @@ class Album extends React.Component {
     this.setState({ allSongs: songs, getInfo: answer[0] });
   }
 
+  getAllFavorites = async () => {
+    await getFavoriteSongs();
+  }
+
   render() {
     const { allSongs, getInfo } = this.state;
     return (
@@ -37,7 +42,7 @@ class Album extends React.Component {
           <h3 data-testid="album-name">{getInfo.collectionName}</h3>
           <p data-testid="artist-name">{getInfo.artistName}</p>
           {allSongs.map((song, index) => (
-            <MusicCard songs={ song } key={ index } />
+            <MusicCard songs={ song } key={ index } update={ this.getAllFavorites } />
           ))}
         </section>
       </div>

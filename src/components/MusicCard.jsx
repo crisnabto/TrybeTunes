@@ -22,7 +22,6 @@ class MusicCard extends React.Component {
     const savedSongs = await getFavoriteSongs();
     // se a música selecionada estiver dentre as musicas favoritadas que estão salvas no localstorage, o checkbox será marcado.
     const isFavorite = savedSongs.some((song) => song.trackName === songs.trackName);
-    // console.log(isFavorite)
     if (isFavorite) {
       this.setState({ favorite: true });
     }
@@ -30,7 +29,7 @@ class MusicCard extends React.Component {
 
   favoriteSong = async () => {
     const { favorite } = this.state;
-    const { songs } = this.props;
+    const { songs, update } = this.props;
     if (favorite === false) {
       this.setState({ carregando: true });
       await addSong(songs);
@@ -39,6 +38,8 @@ class MusicCard extends React.Component {
       this.setState({ carregando: true });
       await removeSong(songs);
       this.setState({ carregando: false, favorite: false });
+      // atualiza as músicas favoritas recebidas pelo componente Favorites:
+      update();
     }
   }
 
@@ -46,7 +47,6 @@ class MusicCard extends React.Component {
     const { songs } = this.props;
     const { trackName, previewUrl, trackId } = songs;
     const { carregando, favorite } = this.state;
-    // console.log(trackName);
     return (
       <div>
         <p>{trackName}</p>
@@ -77,6 +77,7 @@ class MusicCard extends React.Component {
 
 MusicCard.propTypes = {
   songs: PropTypes.objectOf(PropTypes.any).isRequired,
+  update: PropTypes.func.isRequired,
 };
 
 export default MusicCard;

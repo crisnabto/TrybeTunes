@@ -1,10 +1,12 @@
 import React from 'react';
 import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
-import { getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 
 class Favorites extends React.Component {
+  mounted = false;
+
   constructor() {
     super();
 
@@ -16,16 +18,22 @@ class Favorites extends React.Component {
   }
 
   componentDidMount() {
+    this.mounted = true;
     this.getAllFavorites();
+    this.mounted = false;
   }
 
-  // componentDidUpdate() {
-  //   this.getAllFavorites()
-  // }
+  async componentDidUpdate(event) {
+    if (this.mounted) {
+      this.getAllFavorites();
+      console.log('passou aqui');
+      await removeSong(event.target);
+    }
+  }
 
-  // refreshComponent = () => {
-  //   this.getAllFavorites();
-  // }
+  componentWillUnmount() {
+    this.mounted = false;
+  }
 
   getAllFavorites = async () => {
     this.setState({ carregando: true });
@@ -42,7 +50,7 @@ class Favorites extends React.Component {
         { carregando ? <Loading /> : (
 
           favoriteSongs.map((song, index) => (
-            <MusicCard songs={ song } key={ index } />
+            <MusicCard songs={ song } key={ index } update={ this.getAllFavorites } />
           ))
 
         )}
