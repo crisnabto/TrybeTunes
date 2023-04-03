@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import { getUser } from '../services/userAPI';
 import Loading from './Loading';
+import styles from '../components/Profile.module.css';
 
 class Profile extends React.Component {
   constructor() {
@@ -28,18 +29,30 @@ class Profile extends React.Component {
     const { userObj, carregando } = this.state;
     const { name, description, email, image } = userObj;
     return (
-      <div data-testid="page-profile">
+      <div data-testid="page-profile" className={ styles.profileContainer }>
         <Header />
         { carregando ? <Loading /> : (
-          <>
-            <h1>{name}</h1>
-            <h3>{email}</h3>
-            <p>{description}</p>
-            <img data-testid="profile-image" src={ image } alt={ name } />
-            <Link to="/profile/edit">
-              <button type="button">Editar perfil</button>
-            </Link>
-          </>
+          <div className={ styles.profileCard }>
+            <div className={ styles.imageNameButton }>
+              <div className={ styles.imageName }>
+                <img data-testid="profile-image" src={ image } alt={ name } />
+                <h1>{name}</h1>
+              </div>
+              <Link to="/profile/edit">
+                <button type="button">Editar perfil</button>
+              </Link>
+            </div>
+            <div className={ styles.emailDesc }>
+              <div className={ styles.email }>
+                {/* <h3>Email: </h3> */}
+                <p>{email}</p>
+              </div>
+              <div className={ styles.description }>
+                {/* <h3>Descrição: </h3> */}
+                <p>{description}</p>
+              </div>
+            </div>
+          </div>
 
         )}
       </div>

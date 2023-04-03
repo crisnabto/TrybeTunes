@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 import { getUser, updateUser } from '../services/userAPI';
 import Loading from './Loading';
+import styles from '../components/ProfileEdit.module.css';
 
 class ProfileEdit extends React.Component {
   mounted = false;
@@ -98,76 +99,65 @@ class ProfileEdit extends React.Component {
     const { carregando, name, email,
       description, image, buttonDisabled, changePath } = this.state;
     return (
-      <div data-testid="page-profile-edit">
+      <div data-testid="page-profile-edit" className={ styles.editProfileContainer }>
         <Header />
         { carregando ? <Loading /> : (
-          <form>
-            <div>
-              <label htmlFor="name">
-                Nome:
-                <input
-                  type="text"
-                  value={ name }
-                  name="name"
-                  data-testid="edit-input-name"
-                  onChange={ this.handleChange }
-                />
-              </label>
+          <form className={ styles.editFormContainer }>
+            <div className={ styles.editForm }>
+              <label htmlFor="name">Nome:</label>
+              <input
+                type="text"
+                value={ name }
+                id="name"
+                name="name"
+                data-testid="edit-input-name"
+                onChange={ this.handleChange }
+              />
+
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                value={ email }
+                name="email"
+                id="email"
+                data-testid="edit-input-email"
+                required
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                onChange={ this.handleChange }
+              />
+
+              <label htmlFor="description">Descrição:</label>
+              <textarea
+                name="description"
+                id="description"
+                cols="30"
+                rows="10"
+                data-testid="edit-input-description"
+                value={ description }
+                onChange={ this.handleChange }
+              >
+                {description}
+              </textarea>
+
+              <label htmlFor="image">Foto:</label>
+              <input
+                type="text"
+                value={ image }
+                data-testid="edit-input-image"
+                name="image"
+                onChange={ this.handleChange }
+              />
+
+              <button
+                type="button"
+                data-testid="edit-button-save"
+                disabled={ buttonDisabled }
+                onClick={ this.submitInfo }
+              >
+                Salvar
+              </button>
             </div>
 
-            <div>
-              <label htmlFor="email">
-                Email:
-                <input
-                  type="email"
-                  value={ email }
-                  name="email"
-                  data-testid="edit-input-email"
-                  required
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                  onChange={ this.handleChange }
-                />
-              </label>
-            </div>
-
-            <div>
-              <label htmlFor="description">
-                Descrição:
-                <textarea
-                  name="description"
-                  id="description"
-                  cols="30"
-                  rows="10"
-                  data-testid="edit-input-description"
-                  value={ description }
-                  onChange={ this.handleChange }
-                >
-                  {description}
-                </textarea>
-              </label>
-            </div>
-
-            <div>
-              <label htmlFor="image">
-                Foto:
-                <input
-                  type="text"
-                  value={ image }
-                  data-testid="edit-input-image"
-                  name="image"
-                  onChange={ this.handleChange }
-                />
-              </label>
-            </div>
-
-            <button
-              type="button"
-              data-testid="edit-button-save"
-              disabled={ buttonDisabled }
-              onClick={ this.submitInfo }
-            >
-              Salvar
-            </button>
           </form>
         )}
         {changePath && <Redirect to="/profile" />}

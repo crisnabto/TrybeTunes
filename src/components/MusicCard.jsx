@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { AiFillHeart } from 'react-icons/ai';
 import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import Loading from '../pages/Loading';
+import styles from './MusicCard.module.css';
 
 class MusicCard extends React.Component {
   constructor() {
@@ -48,7 +50,7 @@ class MusicCard extends React.Component {
     const { trackName, previewUrl, trackId } = songs;
     const { carregando, favorite } = this.state;
     return (
-      <div>
+      <div className={ styles.musicCard }>
         <p>{trackName}</p>
         <audio data-testid="audio-component" src={ previewUrl } controls>
           <track kind="captions" />
@@ -67,6 +69,8 @@ class MusicCard extends React.Component {
               onChange={ this.favoriteSong }
               checked={ favorite }
             />
+            <AiFillHeart />
+            {' '}
             Favorita
           </label>
         )}

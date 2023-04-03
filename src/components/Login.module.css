@@ -1,0 +1,96 @@
+body {
+  background-attachment: fixed;
+
+  /* background-color: rgb(255, 255, 255); */
+  background-image: url('./images/mesadj.jpg');
+  background-size: cover;
+
+  /* background: linear-gradient(
+    to bottom,
+    rgba(0,0,0, 0),
+    rgba(0,0,0, 100)
+  ),url('./images/mesadj.jpg'); */
+}
+
+.loginContainer {
+  align-items: center;
+  display: flex;
+
+  /* border: 1px solid red; */
+  height: 400px;
+  justify-content: center;
+  padding: 90px 0 50px;
+
+}
+
+.formContainer {
+  align-items: center;
+  background: rgba(116, 106, 106, 0.2);
+  border-radius: 10px;
+  border-width: 5px;
+  box-shadow: inset 0 0 5px 5px #e966de;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: center;
+  margin-top: 100px;
+  width: 700px;
+}
+
+.intermediate {
+  background-color: rgb(116, 106, 106);
+  opacity: 0.4;
+}
+
+.formContainer input {
+  border: 1px solid rgb(208, 208, 208);
+  border-radius: 2px;
+  height: 30px;
+  width: 22em;
+}
+
+.formContainer button {
+  background-color: rgb(125, 92, 125);
+  border: 1px solid #3f153c;
+  color: #3f153c;
+  font-family: inherit;
+  height: 32px;
+  margin-top: 10px;
+  padding: 0;
+  transition: 0.3s;
+  width: 22em;
+}
+
+button:hover {
+  background-color: #260821;
+  border: 1px solid #3f153c;
+  color: white;
+  padding: 5px 10px;
+  transition: 0.3s;
+}
+
+button:disabled {
+  background-color: #ccc;
+  border: 1px solid #999;
+  color: #666;
+  transition: 0.3s;
+}
+
+.formContainer button, .formContainer input {
+  margin-top: 60px;
+}
+
+.formContainer h1 {
+  color: #e966de;
+  font-family: Comfortaa , cursive;
+  font-size: 60px;
+  font-weight: 500;
+  opacity: 80%;
+  text-shadow: 1px 1px rgb(207, 169, 209);
+}
+
+.formContainer h4 {
+  color: aliceblue;
+  letter-spacing: 10px;
+  margin-top: 3px;
+}

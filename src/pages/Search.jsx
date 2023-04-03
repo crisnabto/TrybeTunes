@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Loading from './Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import styles from '../components/Search.module.css';
 
 class Search extends React.Component {
   constructor() {
@@ -53,42 +54,45 @@ class Search extends React.Component {
   render() {
     const { buttonDisabled, carregando, artistAlbums, artistSearched } = this.state;
     return (
-      <div data-testid="page-search">
+      <div data-testid="page-search" className={ styles.searchContainer }>
         <Header />
         { carregando ? <Loading /> : (
-          <form>
-            <label htmlFor="page-search">
+          <form className={ styles.searchForm }>
+            <h1>O que você quer ouvir hoje?</h1>
+            <label htmlFor="page-search" className={ styles.formContainer }>
               <input
                 type="text"
                 name="artistInput"
                 data-testid="search-artist-input"
                 onChange={ this.handleChange }
+                placeholder="Pesquise por artista, album, musica..."
               />
+              <button
+                data-testid="search-artist-button"
+                type="button"
+                disabled={ buttonDisabled }
+                onClick={ this.requestArtist }
+              >
+                Pesquisar
+              </button>
             </label>
 
-            <button
-              data-testid="search-artist-button"
-              type="button"
-              disabled={ buttonDisabled }
-              onClick={ this.requestArtist }
-            >
-              Pesquisar
-            </button>
           </form>
         )}
 
         { artistAlbums.length > 0 ? (
-          <div>
-            <p>{ `Resultado de álbuns de: ${artistSearched}` }</p>
-            <section>
+          <div className={ styles.albumsContainer }>
+            <h1>{ `Resultado de álbuns de: ${artistSearched}` }</h1>
+            <section className={ styles.albumsList }>
               {artistAlbums.map(
                 ({ artistName, collectionId, collectionName, artworkUrl100 }) => (
-                  <div key={ collectionId }>
+                  <div key={ collectionId } className={ styles.albumBox }>
                     <img src={ artworkUrl100 } alt={ collectionName } />
                     <div>
                       <Link
                         to={ `/album/${collectionId}` }
                         data-testid={ `link-to-album-${collectionId}` }
+                        className={ styles.songName }
                       >
                         {collectionName}
                       </Link>
@@ -98,7 +102,7 @@ class Search extends React.Component {
               )}
             </section>
           </div>
-        ) : <p>Nenhum álbum foi encontrado</p>}
+        ) : <p className={ styles.noAlbumFound }>Nenhum álbum foi encontrado</p>}
       </div>
     );
   }

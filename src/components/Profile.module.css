@@ -1,0 +1,81 @@
+.profileContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profileCard {
+  align-items: center;
+  background: rgba(192, 187, 187, 0.5);
+
+  /* border: 2px solid red; */
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: space-between;
+  margin-top: 50px;
+  padding: 20px;
+  width: 300px;
+}
+
+.profileCard img {
+  border-radius: 50%;
+  height: 100px;
+  object-fit: cover;
+  width: 100px;
+}
+
+.imageNameButton {
+
+  /* align-items: center; */
+
+  /* justify-content: space-between; */
+  column-gap: 80px;
+  display: flex;
+  flex-direction: row;
+
+  /* border: 1px solid red; */
+}
+
+.imageName {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.emailDesc {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  margin-top: 20px;
+
+  /* justify-content: space-around; */
+
+  /* border: 1px solid red; */
+  width: 300px;
+}
+
+.email {
+  height: 50px;
+  line-height: 30px;
+  margin-top: 10px;
+}
+
+.description {
+  line-height: 30px;
+  margin-top: 50px;
+}
+
+.profileCard button {
+  border: 1px solid pink;
+  border-radius: 10px;
+  height: 30px;
+  margin-top: 40px;
+  position: relative;
+
+  /* margin-left: 30px; */
+  width: 100px;
+}

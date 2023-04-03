@@ -1,0 +1,41 @@
+.albumCard {
+  align-items: flex-start;
+
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.albumCard img {
+  width: 250px;
+}
+
+.albumInfo {
+  background-color: rgb(158, 41, 124);
+  height: 400px;
+  line-height: 40px;
+  margin-right: 100px;
+  margin-top: 80px;
+  padding: 20px;
+  position: relative;
+  text-align: center;
+  width: 18em;
+}
+
+.albumInfo p {
+  font-size: 20px;
+}
+
+.albumInfo h3 {
+  font-size: 20px;
+}
+
+.songsList {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  width: 60%;
+}

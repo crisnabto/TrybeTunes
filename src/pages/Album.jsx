@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
+import styles from '../components/Album.module.css';
 
 class Album extends React.Component {
   constructor() {
@@ -37,13 +38,21 @@ class Album extends React.Component {
     return (
       <div data-testid="page-album">
         <Header />
-        <section>
-          <img src={ getInfo.artworkUrl100 } alt={ getInfo.collectionId } />
-          <h3 data-testid="album-name">{getInfo.collectionName}</h3>
-          <p data-testid="artist-name">{getInfo.artistName}</p>
-          {allSongs.map((song, index) => (
-            <MusicCard songs={ song } key={ index } update={ this.getAllFavorites } />
-          ))}
+        <section className={ styles.albumCard }>
+          <div className={ styles.albumInfo }>
+            <img src={ getInfo.artworkUrl100 } alt={ getInfo.collectionId } />
+            <h3 data-testid="album-name">{getInfo.collectionName}</h3>
+            <p data-testid="artist-name">{getInfo.artistName}</p>
+          </div>
+          <div className={ styles.songsList }>
+            {allSongs.map((song, index) => (
+              <MusicCard
+                songs={ song }
+                key={ index }
+                update={ this.getAllFavorites }
+              />
+            ))}
+          </div>
         </section>
       </div>
     );

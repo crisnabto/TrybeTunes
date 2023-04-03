@@ -1,0 +1,123 @@
+.searchContainer {
+
+  /* background: rgba(116, 106, 106, 0.2); */
+  height: 800px;
+
+  /* border: 1px solid green; */
+}
+
+.searchForm {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 60px;
+
+  /* border: 1px solid red; */
+}
+
+.formContainer {
+  background: rgba(116, 106, 106, 0.2);
+  border-radius: 30px;
+  display: block;
+  flex-direction: column;
+  height: 200px;
+  position: relative;
+  width: 700px;
+}
+
+.searchForm h1 {
+  color: white;
+  letter-spacing: 4px;
+  margin-bottom: 17px;
+}
+
+.searchForm input {
+  height: 30px;
+  margin-left: 5em;
+  margin-right: 10px;
+  margin-top: 6em;
+  width: 400px;
+}
+
+.searchForm button {
+  background-color: rgb(125, 92, 125);
+  border: 1px solid #3f153c;
+  color: #3f153c;
+  font-family: inherit;
+  height: 33px;
+  padding: 0;
+  transition: 0.3s;
+  width: 150px;
+}
+
+button:disabled {
+  background-color: #ccc;
+  border: 1px solid #999;
+  color: #666;
+  transition: 0.3s;
+}
+
+.searchForm button:hover {
+  background-color: #260821;
+  border: 1px solid #3f153c;
+  color: white;
+  padding: 5px 10px;
+  transition: 0.3s;
+}
+
+.albumsContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10rem;
+  text-align: center;
+}
+
+.albumsContainer h1 {
+  color: white;
+  font-size: 30px;
+  margin-bottom: 40px;
+}
+
+.songName {
+  color: #3f153c;
+  font-size: 18px;
+}
+
+.albumsList {
+  align-items: center;
+  background: rgba(116, 106, 106, 0.2);
+  border-radius: 30px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+
+  /* border: 1px solid red; */
+  padding: 10px;
+}
+
+.albumBox {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid pink;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: space-evenly;
+  margin: 10px;
+  width: 200px;
+}
+
+.albumBox p {
+  font-size: 20px;
+}
+
+.noAlbumFound {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  /* border: 1px solid red; */
+}

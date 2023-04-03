@@ -1,7 +1,9 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { BsHeadphones } from 'react-icons/bs';
 import { createUser } from '../services/userAPI';
 import Loading from './Loading';
+import styles from '../components/Login.module.css';
 
 class Login extends React.Component {
   constructor() {
@@ -54,16 +56,23 @@ class Login extends React.Component {
   render() {
     const { buttonDisabled, carregando, changePath } = this.state;
     return (
-      <div data-testid="page-login">
+      <div data-testid="page-login" className={ styles.loginContainer }>
         { carregando
           ? <Loading /> : (
-            <form>
+            <form className={ styles.formContainer }>
+              <h1>
+                {' '}
+                <BsHeadphones />
+                TrybeTunes
+              </h1>
+              <h4>Feel the music</h4>
               <label htmlFor="name-input">
                 <input
                   type="text"
                   name="inputName"
                   data-testid="login-name-input"
                   onChange={ this.handleChange }
+                  placeholder="Digite seu nome"
                 />
               </label>
 
@@ -72,6 +81,7 @@ class Login extends React.Component {
                 data-testid="login-submit-button"
                 disabled={ buttonDisabled }
                 onClick={ this.saveInputName }
+                className={ styles.button }
               >
                 Entrar
               </button>

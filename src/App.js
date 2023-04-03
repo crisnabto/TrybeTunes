@@ -12,8 +12,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <p>TrybeTunes</p>
-        ;
+        {/* <p>TrybeTunes</p> */}
         <BrowserRouter>
           <Route path="/search" component={ Search } />
           <Route path="/album/:id" component={ Album } />

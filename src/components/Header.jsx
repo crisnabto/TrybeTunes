@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { BsHeadphones } from 'react-icons/bs';
 import Loading from '../pages/Loading';
 import { getUser } from '../services/userAPI';
+import styles from './Header.module.css';
 
 class Header extends React.Component {
   constructor() {
@@ -26,14 +28,36 @@ class Header extends React.Component {
   render() {
     const { userName, carregando } = this.state;
     return (
-      <header data-testid="header-component">
+      <header data-testid="header-component" className={ styles.headerContainer }>
         { carregando ? <Loading /> : (
-          <p data-testid="header-user-name">{userName}</p>
+          <div className={ styles.userInfo }>
+            <p className={ styles.trybetunes }>
+              <BsHeadphones />
+              TrybeTunes
+            </p>
+            <div className={ styles.menuButtons }>
+              <Link to="/search" data-testid="link-to-search" id="button">
+                Pesquisar
+              </Link>
+              <Link to="/favorites" data-testid="link-to-favorites" id="button">
+                Favoritas
+              </Link>
+              <Link to="/profile" data-testid="link-to-profile" id="button">
+                Perfil
+              </Link>
+            </div>
+            <p
+              className={ styles.userName }
+              data-testid="header-user-name"
+            >
+              {/* Olá,
+              {' '} */}
+              {userName}
+              {/* ! */}
+            </p>
+          </div>
         )}
 
-        <Link to="/search" data-testid="link-to-search" />
-        <Link to="/favorites" data-testid="link-to-favorites" />
-        <Link to="/profile" data-testid="link-to-profile" />
       </header>
     );
   }

@@ -1,0 +1,20 @@
+.musicCard {
+  align-items: center;
+  background: rgba(116, 106, 106, 0.9);
+  border: 1px solid pink;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: space-evenly;
+
+  /* align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column; */
+  margin: 10px;
+  width: 300px;
+}
+
+audio {
+  width: 250px;
+}
